@@ -3,3 +3,5 @@ scikit-learn
 matplotlib
 jupyterlab
 streamlit
+requests
+beautifulsoup4
