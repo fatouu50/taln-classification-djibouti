@@ -1,7 +1,9 @@
 pandas
 scikit-learn
+joblib
 matplotlib
 jupyterlab
 streamlit
+altair
 requests
 beautifulsoup4

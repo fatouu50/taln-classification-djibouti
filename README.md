@@ -11,6 +11,58 @@ politique, économie, éducation, santé, sport, société ?
 | Dépôt final | lundi 23 novembre 2026, 18 h |
 | Soutenance | mardi 24 novembre 2026 (10 min de présentation, 3 min de démo, 5 min de questions) |
 
+## Installation et lancement en local
+
+### Prérequis
+- Python 3.10 ou plus récent
+- Git
+- Une connexion internet (pour installer les bibliothèques, et pour la collecte si on la relance)
+
+### 1. Récupérer le projet
+```bash
+git clone https://github.com/fatouu50/taln-classification-djibouti.git
+cd taln-classification-djibouti
+```
+
+### 2. Créer un environnement Python (recommandé)
+```bash
+python3 -m venv .venv
+source .venv/bin/activate          # Windows : .venv\Scripts\activate
+```
+Avec Anaconda, on peut aussi utiliser l'environnement `base` : `conda activate base`.
+
+### 3. Installer les bibliothèques
+```bash
+pip install -r requirements.txt
+```
+Sur une connexion lente : `pip install --timeout 300 --retries 10 -r requirements.txt`.
+
+### 4. Lancer la démonstration
+```bash
+streamlit run app.py
+```
+Le navigateur s'ouvre sur `http://localhost:8501`. On choisit un exemple ou on colle un titre, puis on clique sur « Trouver le thème ».
+
+La démo utilise des fichiers déjà présents dans le dépôt : `modele.joblib`, `data/corpus.csv`, `resultats/comparaison.csv` et `assets/logo_ud.jpg`. Il n'y a rien à entraîner pour la lancer.
+
+> Si la démo affiche une erreur au chargement du modèle (version de scikit-learn différente), il suffit de recréer `modele.joblib` : exécuter `notebooks/02_modeles.ipynb` jusqu'à l'étape 7 (modèle final).
+
+### 5. Refaire toute l'expérience (facultatif)
+```bash
+jupyter lab
+```
+Puis exécuter, dans l'ordre :
+1. `notebooks/01_corpus.ipynb` : nettoyage des titres et tirage de l'échantillon ;
+2. `notebooks/02_modeles.ipynb` : baseline, approche 2, comparaison, matrices de confusion, analyse des erreurs, modèle final.
+
+Les notebooks lisent les données de `data/` et écrivent leurs résultats dans `resultats/`. Les tirages et la validation croisée utilisent `random_state=42` : les scores sont identiques d'une exécution à l'autre.
+
+### 6. Relancer la collecte (facultatif)
+```bash
+python collecter_corpus.py
+```
+Ce script recrée `data/corpus_brut.csv` depuis La Nation et l'ADI. Les sites publient de nouveaux articles chaque jour : le résultat ne sera pas identique à notre corpus du 19 novembre 2026. Le corpus vérifié utilisé pour les résultats reste `data/corpus.csv`.
+
 ## Avancement
 
 ### 1. Données
@@ -98,17 +150,6 @@ Gain régulier mais modeste ; le sport recule avec les caractères. Biais de sou
 | `modele.joblib` | Modèle final (approche 2) entraîné sur les 236 titres, utilisé par la démo |
 | `assets/logo_ud.jpg` | Logo de l'Université de Djibouti affiché dans la démo |
 | `rapport/` | Rapport et diapositives |
-
-## Reproduire
-
-```bash
-pip install -r requirements.txt
-python collecter_corpus.py        # recrée data/corpus_brut.csv (les sites évoluent : le résultat peut varier)
-jupyter lab                       # puis exécuter notebooks/01_corpus.ipynb et 02_modeles.ipynb
-streamlit run app.py              # démonstration (lit modele.joblib, data/corpus.csv, resultats/comparaison.csv)
-```
-
-Les tirages aléatoires utilisent `random_state=42` : à corpus identique, l'échantillon est identique.
 
 ## Données
 
