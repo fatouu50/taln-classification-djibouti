@@ -18,16 +18,16 @@ politique, économie, éducation, santé, sport, société ?
 - [x] Nettoyage des titres ADI : date et nom de rubrique retirés (fuite d'étiquette évitée)
 - [x] Exclusion de 98 titres contenant le corps de l'article : 699 titres propres
 - [x] Échantillon équilibré de 240 titres, 40 par thème (`data/echantillon_a_verifier.csv`)
-- [ ] Vérification manuelle des titres 1 à 120 (Fatouma)
-- [ ] Vérification manuelle des titres 121 à 240 (Madina, issue #1)
-- [ ] Corpus final `data/corpus.csv` et pourcentage de thèmes corrigés
+- [x] Vérification manuelle des titres 1 à 120 (Fatouma)
+- [x] Vérification manuelle des titres 121 à 240 (Madina, issue #1)
+- [x] Corpus final `data/corpus.csv` : 236 titres, 14 thèmes corrigés (5,9 %)
 
 ### 2. Modèles
-- [ ] Baseline : TF-IDF mots + régression logistique, validation croisée stratifiée
-- [ ] Approche 2 : TF-IDF caractères + régression logistique
-- [ ] Tableau comparatif (macro-F1, F1 par thème)
-- [ ] Matrice de confusion
-- [ ] Analyse d'au moins 10 erreurs ou cas difficiles
+- [x] Baseline : TF-IDF mots + régression logistique, validation croisée stratifiée
+- [x] Approche 2 : TF-IDF caractères + régression logistique
+- [x] Tableau comparatif (macro-F1, F1 par thème)
+- [x] Matrices de confusion (baseline et approche 2)
+- [x] Analyse de 14 erreurs, regroupées en 6 causes
 
 ### 3. Démonstration et documentation
 - [ ] Interface Streamlit : coller un titre ou un article, obtenir son thème
@@ -40,6 +40,26 @@ politique, économie, éducation, santé, sport, société ?
 - [ ] Démonstration de 2 à 4 minutes répétée
 - [ ] Vérification : tout s'exécute depuis un dossier vide
 - [ ] Dépôt final
+
+## Résultats
+
+Validation croisée stratifiée en 5 plis sur 236 titres.
+
+| Approche | Macro-F1 moyenne | Écart-type | Plis gagnés |
+| --- | --- | --- | --- |
+| Baseline : TF-IDF mots + régression logistique | 0,589 | 0,035 | 1 |
+| Approche 2 : TF-IDF caractères (2-5) + régression logistique | **0,643** | 0,065 | **4** |
+
+| Thème | F1 baseline | F1 approche 2 |
+| --- | --- | --- |
+| economie | 0,38 | 0,52 |
+| education | 0,67 | 0,75 |
+| politique | 0,62 | 0,70 |
+| societe | 0,57 | 0,65 |
+| sante | 0,76 | 0,75 |
+| sport | 0,56 | 0,49 |
+
+Gain régulier mais modeste ; le sport recule avec les caractères. Biais de source partiel : les erreurs se rabattent en partie sur le thème propre au journal d'origine. Détails : `notebooks/02_modeles.ipynb` et `resultats/`.
 
 ## Planning
 
@@ -69,9 +89,10 @@ politique, économie, éducation, santé, sport, société ?
 | `collecter_corpus.py` | Collecte des titres par rubrique sur La Nation et l'ADI |
 | `data/corpus_brut.csv` | Les 803 titres collectés, avant nettoyage |
 | `data/echantillon_a_verifier.csv` | Les 240 titres tirés pour la vérification manuelle |
+| `data/corpus.csv` | Corpus final vérifié (236 titres gardés, 4 exclus) |
 | `data/guide_annotation.md` | Définition des six thèmes et règles d'annotation |
 | `notebooks/01_corpus.ipynb` | Chargement, nettoyage, exclusions, tirage de l'échantillon |
-| `notebooks/` | Puis : baseline, approche 2, évaluation, analyse d'erreurs |
+| `notebooks/02_modeles.ipynb` | Baseline, approche 2, comparaison, matrices de confusion, analyse des erreurs |
 | `resultats/` | Tableau comparatif, matrices de confusion |
 | `rapport/` | Rapport et diapositives |
 
