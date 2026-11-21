@@ -1,0 +1,3 @@
+Approche,Macro-F1 moyenne,Écart-type,Plis gagnés
+Baseline : TF-IDF mots + LR,0.589,0.035,1
+Approche 2 : TF-IDF caractères (2-5) + LR,0.643,0.065,4
