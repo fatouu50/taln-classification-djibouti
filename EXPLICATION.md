@@ -206,8 +206,8 @@ On garde la même régression logistique et la même validation croisée. Seule 
 
 | Approche | Représentation | Modèle | Macro-F1 |
 |---|---|---|---|
-| Baseline | TF-IDF mots | Régression logistique | à remplir |
-| Approche 2 | TF-IDF caractères (2 à 5) | Régression logistique | à remplir |
+| Baseline | TF-IDF mots | Régression logistique | 0,589 |
+| Approche 2 | TF-IDF caractères (2 à 5) | Régression logistique | 0,643 |
 
 On complète aussi le F1 de chaque thème, pour voir **où** l'approche 2 gagne ou perd.
 
@@ -224,7 +224,7 @@ Les causes probables :
 - **Thèmes qui se chevauchent** : « Le Parlement adopte le budget 2026 » (politique ou économie ?).
 - **Vocabulaire trompeur** : « ministre » apparaît dans presque tous les thèmes.
 - **Titre coupé ou trop court** : « Il était une fois le CCFAR… ».
-- **Biais de source** : tous les titres d'éducation viennent de La Nation, tous ceux de société de l'ADI. Le modèle peut apprendre le **style d'un journal** plutôt que le thème.
+- **Biais de source** : presque tous les titres d'éducation viennent de La Nation (40 sur 43), presque tous ceux de société de l'ADI (39 sur 42). Le modèle apprend en partie le **style d'un journal** plutôt que le thème.
 
 ---
 
@@ -242,7 +242,7 @@ Le modèle est entraîné une fois sur les 236 titres, puis enregistré et recha
 
 - **Petit corpus** : 236 titres, donc les scores ont une marge d'incertitude.
 - **Étiquettes issues des rubriques**, vérifiées par une seule personne par titre : pas de mesure d'accord entre annotatrices.
-- **Biais de source** : éducation = La Nation uniquement, société = ADI uniquement.
+- **Biais de source** : éducation vient presque entièrement de La Nation, société presque entièrement de l'ADI.
 - **Titres seulement** : le texte de l'article apporterait plus d'information.
 - **Six thèmes qui se chevauchent** : un article peut être à la fois politique et économique, mais on n'en garde qu'un.
 

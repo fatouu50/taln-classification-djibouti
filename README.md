@@ -30,7 +30,7 @@ politique, économie, éducation, santé, sport, société ?
 - [x] Analyse de 14 erreurs, regroupées en 6 causes
 
 ### 3. Démonstration et documentation
-- [ ] Interface Streamlit : coller un titre ou un article, obtenir son thème
+- [x] Interface Streamlit (`app.py`) : tester un titre, résultats et biais de source sur un seul écran
 - [ ] README complet (installation, reproduction, description des données)
 - [x] `requirements.txt`
 
@@ -93,7 +93,10 @@ Gain régulier mais modeste ; le sport recule avec les caractères. Biais de sou
 | `data/guide_annotation.md` | Définition des six thèmes et règles d'annotation |
 | `notebooks/01_corpus.ipynb` | Chargement, nettoyage, exclusions, tirage de l'échantillon |
 | `notebooks/02_modeles.ipynb` | Baseline, approche 2, comparaison, matrices de confusion, analyse des erreurs |
-| `resultats/` | Tableau comparatif, matrices de confusion |
+| `resultats/` | Tableau comparatif, matrices de confusion, liste des erreurs |
+| `app.py` | Démonstration Streamlit : tester un titre, chiffres clés, comparaison des approches |
+| `modele.joblib` | Modèle final (approche 2) entraîné sur les 236 titres, utilisé par la démo |
+| `assets/logo_ud.jpg` | Logo de l'Université de Djibouti affiché dans la démo |
 | `rapport/` | Rapport et diapositives |
 
 ## Reproduire
@@ -101,7 +104,8 @@ Gain régulier mais modeste ; le sport recule avec les caractères. Biais de sou
 ```bash
 pip install -r requirements.txt
 python collecter_corpus.py        # recrée data/corpus_brut.csv (les sites évoluent : le résultat peut varier)
-jupyter lab                       # puis exécuter notebooks/01_corpus.ipynb
+jupyter lab                       # puis exécuter notebooks/01_corpus.ipynb et 02_modeles.ipynb
+streamlit run app.py              # démonstration (lit modele.joblib, data/corpus.csv, resultats/comparaison.csv)
 ```
 
 Les tirages aléatoires utilisent `random_state=42` : à corpus identique, l'échantillon est identique.
@@ -114,7 +118,7 @@ Les tirages aléatoires utilisent `random_state=42` : à corpus identique, l'éc
 
 ## Limites connues
 
-- Les titres d'éducation viennent tous de La Nation, ceux de société tous de l'ADI : le modèle pourrait apprendre le style d'un journal plutôt que le thème.
+- Les titres d'éducation viennent presque tous de La Nation (40 sur 43), ceux de société presque tous de l'ADI (39 sur 42) : le modèle apprend en partie le style du journal (biais de source partiel, mesuré dans l'analyse des erreurs).
 - Chaque titre est vérifié par une seule personne : pas de mesure d'accord inter-annotateurs.
 - La colonne `date` de l'ADI n'est pas fiable ; elle n'est pas utilisée par les modèles.
 - Corpus de petite taille (240 titres) et titres courts.
