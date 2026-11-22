@@ -111,6 +111,8 @@ Validation croisée stratifiée en 5 plis sur 236 titres.
 | sante | 0,76 | 0,75 |
 | sport | 0,56 | 0,49 |
 
+**Test de contrôle** : en nettoyant les titres (« ... » finaux retirés, apostrophes et espaces uniformisés), la baseline reste à 0,589 et l'approche 2 passe à 0,626, en gagnant toujours 4 plis sur 5. Environ un tiers de son avance venait de signes typographiques propres à La Nation (71 % de ses titres finissent par « ... », contre 0 % à l'ADI) ; le reste vient bien du découpage en caractères.
+
 Gain régulier mais modeste ; le sport recule avec les caractères. Biais de source partiel : les erreurs se rabattent en partie sur le thème propre au journal d'origine. Détails : `notebooks/02_modeles.ipynb` et `resultats/`.
 
 ## Planning
@@ -144,6 +146,7 @@ Gain régulier mais modeste ; le sport recule avec les caractères. Biais de sou
 | `data/corpus.csv` | Corpus final vérifié (236 titres gardés, 4 exclus) |
 | `data/guide_annotation.md` | Définition des six thèmes et règles d'annotation |
 | `notebooks/01_corpus.ipynb` | Chargement, nettoyage, exclusions, tirage de l'échantillon |
+| `notebooks/01b_exploration.ipynb` | Exploration : équilibre, longueur, signes typographiques par journal, doublons |
 | `notebooks/02_modeles.ipynb` | Baseline, approche 2, comparaison, matrices de confusion, analyse des erreurs |
 | `resultats/` | Tableau comparatif, matrices de confusion, liste des erreurs |
 | `app.py` | Démonstration Streamlit : tester un titre, chiffres clés, comparaison des approches |
@@ -163,6 +166,8 @@ Gain régulier mais modeste ; le sport recule avec les caractères. Biais de sou
 - Chaque titre est vérifié par une seule personne : pas de mesure d'accord inter-annotateurs.
 - La colonne `date` de l'ADI n'est pas fiable ; elle n'est pas utilisée par les modèles.
 - Corpus de petite taille (240 titres) et titres courts.
+- Titres coupés : 71 % des titres de La Nation se terminent par « ... », un signe que le modèle sur les caractères peut exploiter (effet mesuré : −0,017 de macro-F1 une fois retiré).
+- Quasi-doublons : 8 titres « séance du Conseil des ministres » presque identiques, dont un doublon exact (ids 117 et 163). Le retirer change la macro-F1 de moins de 0,02 sans modifier les conclusions ; le F1 de la politique est sans doute un peu surestimé.
 
 ## Suivi
 
