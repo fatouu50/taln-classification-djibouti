@@ -80,18 +80,21 @@ Ce script recrée `data/corpus_brut.csv` depuis La Nation et l'ADI. Les sites pu
 - [x] Tableau comparatif (macro-F1, F1 par thème)
 - [x] Matrices de confusion (baseline et approche 2)
 - [x] Analyse de 14 erreurs, regroupées en 6 causes
+- [x] Test de contrôle des signes typographiques : 0,643 → 0,626 (issue #15)
+- [x] Kappa de Cohen : annotation humaine (`theme_A`) vs annotation automatique indépendante (`theme_B`) = 0,898 ; modèles face à `theme_final` : 0,525 (baseline) et 0,591 (approche 2)
 
 ### 3. Démonstration et documentation
 - [x] Interface Streamlit (`app.py`) : tester un titre, résultats et biais de source sur un seul écran
-- [ ] README complet (installation, reproduction, description des données)
+- [x] README complet (installation, reproduction, description des données)
 - [x] `requirements.txt`
 
 ### 4. Rendu
-- [ ] Rapport de 6 à 8 pages
-- [ ] Diapositives (8 à 10)
-- [ ] Démonstration de 2 à 4 minutes répétée
+- [x] Rapport (`rapport/Rapport_TALN_Classification_thematique.docx`)
+- [x] Diapositives avec notes orateur (`rapport/Soutenance_TALN_Classification_thematique.pptx`)
+- [x] Démonstration préparée (deux titres testés)
 - [ ] Vérification : tout s'exécute depuis un dossier vide
-- [ ] Dépôt final
+- [x] Dépôt final : 23 novembre 2026
+- [ ] Soutenance : 24 novembre 2026
 
 ## Résultats
 

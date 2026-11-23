@@ -152,7 +152,7 @@ st.markdown(f"""
   <div class="texte-bandeau">
     <h1>CLASSIFICATION THÉMATIQUE D'ARTICLES DJIBOUTIENS</h1>
     <p>Projet TALN · Master 2 IAMD · Université de Djibouti</p>
-    <p>Fatouma Soubere Mahamoud · Madina Ali Benoita · Enseignant : Dr Houssein Ahmed Assowe</p>
+    <p>Fatouma Soubere Mahamoud · Madina Ali Banoita · Enseignant : Dr Houssein Ahmed Assowe</p>
   </div>
 </div>
 """, unsafe_allow_html=True)
