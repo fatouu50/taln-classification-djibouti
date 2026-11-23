@@ -13,14 +13,15 @@ import streamlit as st
 
 st.set_page_config(page_title="Classification thématique", layout="wide")
 
-# ---------------------------------------------------------------- 1. Couleurs (nuances de bleu, comme le modèle de dashboard)
-MARINE = "#0B2E59"
-BLEU = "#1F5FA8"
-BLEU_MOYEN = "#5B8FD1"
-BLEU_CLAIR = "#A9C6EB"
-BLEU_PALE = "#E8F0FA"
-GRIS_TEXTE = "#5A6472"
-PALETTE = [MARINE, BLEU, BLEU_MOYEN, "#7FA9DD", BLEU_CLAIR, "#D3E2F5"]
+# ---------------------------------------------------------------- 1. Couleurs (bleu-vert de la mer, sable et terre cuite)
+MARINE = "#16423C"      # bleu-vert profond : titres, boutons, couleur principale
+BLEU = "#2F7A6E"        # bleu-vert moyen
+BLEU_MOYEN = "#8DB596"  # vert sauge
+BLEU_CLAIR = "#D9C7A7"  # sable : la baseline dans les graphiques
+BLEU_PALE = "#F2ECE1"   # sable très clair
+GRIS_TEXTE = "#6B6259"  # gris chaud pour le texte secondaire
+ACCENT = "#C8664A"      # terre cuite : petite touche de couleur
+PALETTE = [MARINE, BLEU, BLEU_MOYEN, "#D9B77E", ACCENT, "#E8B7A0"]
 
 NOMS = {"politique": "Politique", "economie": "Économie", "education": "Éducation",
         "sante": "Santé", "sport": "Sport", "societe": "Société"}
@@ -65,7 +66,7 @@ st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 html, body, .stApp, [class*="css"] {{ font-family: 'Inter', sans-serif; }}
-.stApp {{ background: #F4F7FB; }}
+.stApp {{ background: #F7F4EE; }}
 .block-container {{ padding-top: 1.2rem; max-width: 1250px; }}
 header[data-testid="stHeader"] {{ background: transparent; }}
 
@@ -78,12 +79,12 @@ header[data-testid="stHeader"] {{ background: transparent; }}
 .bandeau h1 {{ color: white; font-size: 1.7rem; font-weight: 800; letter-spacing: .02em; margin: 0; padding: 0; }}
 .bandeau p {{ color: {BLEU_CLAIR}; margin: .25rem 0 0; font-size: .92rem; }}
 
-div[class*="st-key-carte"] {{ background: white; border: 1px solid #DCE6F2 !important; border-radius: 12px;
+div[class*="st-key-carte"] {{ background: white; border: 1px solid #E6DFD3 !important; border-radius: 12px;
                               box-shadow: 0 2px 8px rgba(11,46,89,.06); padding: .4rem .6rem; }}
 .titre-carte {{ color: {MARINE}; font-weight: 700; font-size: .82rem; letter-spacing: .06em;
                text-transform: uppercase; text-align: center; margin: .2rem 0 .6rem; }}
 
-.kpi {{ display: flex; align-items: center; gap: .9rem; background: white; border: 1px solid #DCE6F2;
+.kpi {{ display: flex; align-items: center; gap: .9rem; background: white; border: 1px solid #E6DFD3; border-bottom: 3px solid {ACCENT};
         border-radius: 12px; padding: .9rem 1rem; box-shadow: 0 2px 8px rgba(11,46,89,.06); min-height: 118px; }}
 .rond {{ background: {MARINE}; border-radius: 50%; width: 52px; height: 52px; min-width: 52px;
          display: flex; align-items: center; justify-content: center; }}
@@ -98,10 +99,10 @@ div[class*="st-key-carte"] {{ background: white; border: 1px solid #DCE6F2 !impo
 
 .stButton button {{ background: {MARINE}; color: white; border: none; border-radius: 8px; font-weight: 600; }}
 .stButton button:hover {{ background: {BLEU}; color: white; }}
-.stTextArea textarea {{ background: #FAFCFE; border: 1px solid #C9D8EA; }}
+.stTextArea textarea {{ background: #FDFBF7; border: 1px solid #DDD3C2; }}
 
 .pied {{ display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; background: white;
-         border: 1px solid #DCE6F2; border-radius: 12px; padding: .9rem 1.2rem; margin-top: 1.2rem; }}
+         border: 1px solid #E6DFD3; border-radius: 12px; padding: .9rem 1.2rem; margin-top: 1.2rem; }}
 .pied .bloc {{ display: flex; align-items: center; gap: .7rem; min-width: 200px; flex: 1; }}
 .pied .rond {{ width: 44px; height: 44px; min-width: 44px; }}
 .pied .label {{ color: {MARINE}; font-weight: 700; font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; }}
